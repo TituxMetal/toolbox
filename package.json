@@ -1,0 +1,42 @@
+{
+  "name": "toolbox-pwa",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.4",
+    "tailwindcss": "^4.1.16"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "@tailwindcss/vite": "^4.1.16",
+    "@types/bun": "^1.3.1",
+    "@types/node": "^24.6.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vite-pwa/assets-generator": "^1.0.2",
+    "@vitejs/plugin-react-swc": "^4.2.0",
+    "eslint": "^9.38.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react-dom": "^2.0.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "eslint-plugin-react-x": "^2.2.4",
+    "globals": "^16.4.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.2",
+    "vite": "^7.1.12",
+    "vite-plugin-pwa": "^1.1.0",
+    "workbox-core": "^7.3.0",
+    "workbox-window": "^7.3.0"
+  }
+}
