@@ -55,12 +55,12 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,png,svg,ico}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
         cleanupOutdatedCaches: true,
         clientsClaim: true
       },
       injectManifest: {
-        globPatterns: ['**/*.{js,css,html,svg,png,svg,ico}']
+        globPatterns: ['**/*.{js,css,html,svg,png,ico}']
       },
       devOptions: {
         enabled: true,

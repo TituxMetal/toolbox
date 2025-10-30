@@ -37,17 +37,17 @@ describe('time utilities', () => {
       expect(formatDuration(0)).toBe('0 seconds')
       expect(formatDuration(30)).toBe('30 seconds')
       expect(formatDuration(60)).toBe('1 minute')
-      expect(formatDuration(90)).toBe('1 minute 30 seconds')
+      expect(formatDuration(90)).toBe('1 minute and 30 seconds')
       expect(formatDuration(120)).toBe('2 minutes')
       expect(formatDuration(3600)).toBe('1 hour')
-      expect(formatDuration(3660)).toBe('1 hour 1 minute')
+      expect(formatDuration(3660)).toBe('1 hour and 1 minute')
       expect(formatDuration(7200)).toBe('2 hours')
-      expect(formatDuration(7320)).toBe('2 hours 2 minutes')
+      expect(formatDuration(7320)).toBe('2 hours and 2 minutes')
     })
 
     it('handles complex durations', () => {
-      expect(formatDuration(3661)).toBe('1 hour 1 minute')
-      expect(formatDuration(7261)).toBe('2 hours 1 minute')
+      expect(formatDuration(3661)).toBe('1 hour and 1 minute')
+      expect(formatDuration(7261)).toBe('2 hours and 1 minute')
     })
   })
 
