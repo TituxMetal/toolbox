@@ -175,24 +175,24 @@ export default defineConfig({
 
 /* Base styles */
 body {
-  @apply bg-zinc-700 text-zinc-100 min-h-screen;
+  @apply min-h-screen bg-zinc-700 text-zinc-100;
 }
 
 /* Custom utilities */
 .glass-effect {
-  @apply bg-white/10 backdrop-blur-md border border-white/20;
+  @apply border border-white/20 bg-white/10 backdrop-blur-md;
 }
 
 .btn-primary {
-  @apply bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  @apply rounded-lg bg-indigo-500 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-indigo-600;
 }
 
 .btn-secondary {
-  @apply bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  @apply rounded-lg bg-purple-500 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-purple-600;
 }
 
 .btn-danger {
-  @apply bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200;
+  @apply rounded-lg bg-red-500 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-red-600;
 }
 
 .card {
@@ -933,40 +933,41 @@ html {
 }
 
 body {
-  @apply bg-zinc-700 text-zinc-100 min-h-screen font-sans antialiased;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  @apply min-h-screen bg-zinc-700 font-sans text-zinc-100 antialiased;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom utilities */
 .glass-effect {
-  @apply bg-white/10 backdrop-blur-md border border-white/20;
+  @apply border border-white/20 bg-white/10 backdrop-blur-md;
 }
 
 .glass-effect-dark {
-  @apply bg-black/20 backdrop-blur-md border border-white/10;
+  @apply border border-white/10 bg-black/20 backdrop-blur-md;
 }
 
 .btn-primary {
-  @apply bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply rounded-lg bg-indigo-500 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-indigo-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .btn-secondary {
-  @apply bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply rounded-lg bg-purple-500 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-purple-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .btn-danger {
-  @apply bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply rounded-lg bg-red-500 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-red-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .btn-success {
-  @apply bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply rounded-lg bg-green-500 px-6 py-3 font-semibold text-white transition-colors duration-200 hover:bg-green-600 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
 }
 
 .btn-outline {
-  @apply border-2 border-indigo-500 text-indigo-400 hover:bg-indigo-500/10 font-semibold py-3 px-6 rounded-lg transition-colors duration-200 active:scale-95;
+  @apply rounded-lg border-2 border-indigo-500 px-6 py-3 font-semibold text-indigo-400 transition-colors duration-200 hover:bg-indigo-500/10 active:scale-95;
 }
 
 .card {
@@ -1033,7 +1034,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-zinc-600 rounded-full hover:bg-zinc-500;
+  @apply rounded-full bg-zinc-600 hover:bg-zinc-500;
 }
 
 /* Focus styles for accessibility */
@@ -1222,7 +1223,6 @@ bun run preview
    ```
 
 2. **Check PWA Installability:**
-
    - Open DevTools (F12)
    - Go to "Application" tab
    - Check "Manifest" section
@@ -1458,7 +1458,10 @@ export const openDatabase = (): Promise<IDBDatabase> => {
     request.onupgradeneeded = event => {
       const db = (event.target as IDBOpenDBRequest).result
       if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME, { keyPath: 'id', autoIncrement: true })
+        db.createObjectStore(STORE_NAME, {
+          keyPath: 'id',
+          autoIncrement: true
+        })
       }
     }
   })
@@ -1618,20 +1621,17 @@ export const router = createBrowserRouter([
 ## 12. Next Steps
 
 1. **Generate PWA Icons:**
-
    - Use PWA Asset Generator or RealFaviconGenerator
    - Place all icons in `public/` directory
    - Test on actual devices
 
 2. **Add More Tools:**
-
    - Create new components in `src/components/tools/`
    - Add routing if needed (React Router)
    - Implement tool selection UI
    - Follow the same modular pattern
 
 3. **Deploy:**
-
    - **Self-hosted:** Use `bun run build` and serve `dist/` folder on your server
 
 4. **Enhancements:**
