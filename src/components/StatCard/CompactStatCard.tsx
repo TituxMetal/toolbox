@@ -36,7 +36,7 @@ export const CompactStatCard = memo(
         {showIcon && icon && <div className='mb-2 flex justify-center text-zinc-200'>{icon}</div>}
 
         {/* Value */}
-        <div className={`text-xl font-bold ${valueColorClass} mb-1`}>{value}</div>
+        <div className={`mb-1 text-xl font-bold ${valueColorClass}`}>{value}</div>
 
         {/* Label */}
         <div className='text-xs tracking-wide text-zinc-200 uppercase'>{label}</div>

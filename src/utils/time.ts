@@ -49,7 +49,7 @@ export const formatDuration = (seconds: number): string => {
   }
 
   if (parts.length === 2) {
-    return `${parts[0]} ${parts[1]}`
+    return `${parts[0]} and ${parts[1]}`
   }
 
   return `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`
