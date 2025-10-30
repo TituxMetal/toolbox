@@ -1,35 +1,57 @@
-interface ToolCardProps {
+import type { HTMLAttributes, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
+
+import { PlusIcon } from '~/components/Icons/ToolIcons'
+
+interface ToolCardProps extends HTMLAttributes<HTMLElement> {
   title: string
   description: string
-  icon?: React.ReactNode
+  icon?: ReactNode
+  href?: string
+  isActive?: boolean
 }
 
-export const ToolCard = ({ title, description, icon }: ToolCardProps) => (
-  <article className="card opacity-50 border-dashed border-2 border-zinc-600">
-    <div className="text-center py-8">
-      <div className="w-12 h-12 mx-auto mb-4 bg-zinc-600 rounded-lg flex items-center justify-center">
-        {icon || (
-          <svg 
-            className="w-6 h-6 text-zinc-400" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M12 6v6m0 0v6m0-6h6m-6 0H6" 
-            />
-          </svg>
-        )}
+export const ToolCard = ({
+  title,
+  description,
+  icon,
+  href,
+  isActive = false,
+  ...props
+}: ToolCardProps) => {
+  const cardClasses = isActive
+    ? 'card hover:shadow-lg hover:scale-[1.02] transition-all duration-200 cursor-pointer'
+    : 'card opacity-50 border-dashed border-2 border-zinc-600'
+
+  const content = (
+    <div className='py-8 text-center'>
+      <div
+        className={`mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${
+          isActive ? 'bg-indigo-600' : 'bg-zinc-600'
+        }`}
+      >
+        {icon || <PlusIcon className={`h-6 w-6 ${isActive ? 'text-zinc-100' : 'text-zinc-200'}`} />}
       </div>
-      <h3 className="text-lg font-medium text-zinc-400 mb-2">
+      <h3 className={`mb-2 text-lg font-medium ${isActive ? 'text-zinc-100' : 'text-zinc-200'}`}>
         {title}
       </h3>
-      <p className="text-sm text-zinc-500">
-        {description}
-      </p>
+      <p className={`text-sm ${isActive ? 'text-zinc-100' : 'text-zinc-200'}`}>{description}</p>
     </div>
-  </article>
-)
+  )
+
+  if (href && isActive) {
+    return (
+      <Link to={href}>
+        <article className={cardClasses} {...props}>
+          {content}
+        </article>
+      </Link>
+    )
+  }
+
+  return (
+    <article className={cardClasses} {...props}>
+      {content}
+    </article>
+  )
+}
