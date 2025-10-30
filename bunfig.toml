@@ -1,0 +1,11 @@
+[test]
+# Load Happy-DOM and setup file before running tests
+preload = ["./happydom.ts", "src/test/setup-bun.ts"]
+
+# Enable globals like describe, it, expect
+globals = true
+
+# Test timeout (10 seconds)
+timeout = 10000
+
+coverageThreshold = { lines = 0.8, functions = 0.8, statements = 0.8 }

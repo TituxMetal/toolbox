@@ -20,7 +20,7 @@ export default [
       'react-refresh': reactRefresh,
       'react-x': reactX,
       'react-dom': reactDom,
-      'import': importPlugin
+      import: importPlugin
     },
     languageOptions: {
       ecmaVersion: 2020,
@@ -43,14 +43,14 @@ export default [
       'import/order': [
         'error',
         {
-          'alphabetize': { order: 'asc', caseInsensitive: true },
-          'groups': ['builtin', 'external', 'internal', 'parent', 'sibling'],
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling'],
           'newlines-between': 'always',
-          'pathGroups': [
+          pathGroups: [
             { pattern: 'node:*', group: 'builtin' },
             { pattern: '~/**', group: 'internal', position: 'after' }
           ],
-          'pathGroupsExcludedImportTypes': ['builtin']
+          pathGroupsExcludedImportTypes: ['builtin']
         }
       ],
       'import/newline-after-import': [
@@ -83,7 +83,16 @@ export default [
   },
   {
     // Apply this configuration only to the specified config files
-    files: ['vite.config.ts', 'eslint.config.js', 'pwa-assets.config.ts'],
+    files: [
+      'vite.config.ts',
+      'vitest.config.ts',
+      'eslint.config.js',
+      'pwa-assets.config.ts',
+      'prettier.config.cjs'
+    ],
+    languageOptions: {
+      globals: globals.node
+    },
     rules: {
       // Disable the default export rule for configuration files
       'import/no-default-export': 'off',
