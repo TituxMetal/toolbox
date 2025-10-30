@@ -2,7 +2,7 @@
  * Stats Store Tests
  */
 
-import { afterEach, beforeEach, describe, expect, it, mock } from 'bun:test'
+import { afterEach, beforeEach, describe, expect, it } from 'bun:test'
 
 import {
   $stats,
@@ -44,11 +44,8 @@ describe('statsStore', () => {
   beforeEach(() => {
     // Reset store to default state
     $stats.set(defaultStats)
-    // Mock storage functions
-    mock.module('~/utils/storage', () => ({
-      loadStats: mock(() => mockStats),
-      saveStats: mock(() => {})
-    }))
+    // Save default stats to localStorage to ensure clean state
+    storage.saveStats(defaultStats)
   })
 
   afterEach(() => {
@@ -97,7 +94,11 @@ describe('statsStore', () => {
     })
 
     it('loads stats from storage and updates store', () => {
+      // Save mockStats to storage first
+      storage.saveStats(mockStats)
+      // Load from storage
       loadStatsFromStorage()
+      // Verify store was updated
       expect($stats.get()).toEqual(mockStats)
     })
   })
@@ -111,7 +112,9 @@ describe('statsStore', () => {
     it('saves current stats to storage', () => {
       $stats.set(mockStats)
       saveStats()
-      expect(storage.saveStats).toHaveBeenCalledWith(mockStats)
+      // Verify stats were saved by loading them back
+      const loaded = storage.loadStats()
+      expect(loaded).toEqual(mockStats)
     })
   })
 
@@ -161,7 +164,10 @@ describe('statsStore', () => {
 
     it('saves stats to storage', () => {
       updateWorkStats(1500)
-      expect(storage.saveStats).toHaveBeenCalled()
+      // Verify stats were saved by loading them back
+      const loaded = storage.loadStats()
+      expect(loaded.totalWorkSessions).toBe(1)
+      expect(loaded.totalWorkTime).toBe(1500)
     })
   })
 
@@ -203,7 +209,10 @@ describe('statsStore', () => {
 
     it('saves stats to storage', () => {
       updateBreakStats(300)
-      expect(storage.saveStats).toHaveBeenCalled()
+      // Verify stats were saved by loading them back
+      const loaded = storage.loadStats()
+      expect(loaded.totalBreakSessions).toBe(1)
+      expect(loaded.totalBreakTime).toBe(300)
     })
   })
 
@@ -230,7 +239,9 @@ describe('statsStore', () => {
 
     it('saves stats to storage', () => {
       resetStreak()
-      expect(storage.saveStats).toHaveBeenCalled()
+      // Verify stats were saved by loading them back
+      const loaded = storage.loadStats()
+      expect(loaded.currentStreak).toBe(0)
     })
   })
 
@@ -248,7 +259,9 @@ describe('statsStore', () => {
 
     it('saves stats to storage', () => {
       resetStats()
-      expect(storage.saveStats).toHaveBeenCalled()
+      // Verify stats were saved by loading them back
+      const loaded = storage.loadStats()
+      expect(loaded).toEqual(defaultStats)
     })
   })
 
@@ -275,7 +288,9 @@ describe('statsStore', () => {
 
     it('saves stats to storage', () => {
       resetDailyStats()
-      expect(storage.saveStats).toHaveBeenCalled()
+      // Verify stats were saved by loading them back
+      const loaded = storage.loadStats()
+      expect(loaded.todaySessions).toBe(0)
     })
   })
 
@@ -302,7 +317,9 @@ describe('statsStore', () => {
 
     it('saves stats to storage', () => {
       resetWeeklyStats()
-      expect(storage.saveStats).toHaveBeenCalled()
+      // Verify stats were saved by loading them back
+      const loaded = storage.loadStats()
+      expect(loaded.weekSessions).toBe(0)
     })
   })
 })
