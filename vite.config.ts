@@ -14,11 +14,17 @@ export default defineConfig({
       strategies: 'generateSW',
       registerType: 'prompt',
       injectRegister: 'auto',
-      pwaAssets: { disabled: false, config: true, htmlPreset: '2023', overrideManifestIcons: true },
+      pwaAssets: {
+        disabled: false,
+        config: true,
+        htmlPreset: '2023',
+        overrideManifestIcons: true
+      },
       manifest: {
-        name: 'Toolbox PWA',
-        short_name: 'Toolbox',
-        description: 'A powerful toolbox PWA built with React and Vite',
+        name: 'Developer Toolbox',
+        short_name: 'DevToolbox',
+        description:
+          'Essential development tools including Pomodoro timer for productivity and focus',
         theme_color: '#3f3f46',
         background_color: '#3f3f46',
         display: 'standalone',
